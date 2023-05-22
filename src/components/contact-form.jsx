@@ -1,5 +1,5 @@
-import sgMail from "@sendgrid/mail";
 import { useForm } from "react-hook-form";
+import { sendMail } from "../services/mailService";
 
 const ContactForm = ({ services = [] }) => {
    const {
@@ -10,6 +10,7 @@ const ContactForm = ({ services = [] }) => {
 
    const handleFormSubmit = handleSubmit((data) => {
       console.log(data);
+      sendMail();
    });
 
    return (
