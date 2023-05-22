@@ -1,0 +1,94 @@
+---
+import { getCollection } from "astro:content";
+
+const allServices = await getCollection("services");
+---
+
+<div class="bg-[url('/images/cta-bg.jpg')] bg-cover section">
+   <div class="container flex justify-between items-center">
+      <div class="space-y-4">
+         <h2 class="text-4xl font-bold font-heading">
+            Questions? Get in touch today.
+         </h2>
+         <p class="text-gray-500">JoPros Roofing Team is here to help.</p>
+      </div>
+      <a class="button" href="/contact">Contact Us</a>
+   </div>
+</div>
+
+<footer class="bg-primary text-white pt-20">
+   <div class="container flex gap-12">
+      <div class="w-1/4 space-y-4">
+         <img class="w-23 object-contain" src="/images/white-logo.svg" alt="" />
+         <p>
+            Our mission is to provide only the best service and the most high
+            quality roofing services at competitive prices.
+         </p>
+      </div>
+      <div class="w-1/6 space-y-4">
+         <h3 class="font-heading font-bold text-lg">Quick Links</h3>
+         <a class="block" href="/">Home</a>
+         <a class="block" href="/about">About</a>
+         <a class="block" href="/projects">Projects</a>
+      </div>
+      <div class="w-1/6 space-y-4">
+         <h3 class="font-heading font-bold text-lg">Services</h3>
+         {
+            allServices.map((service) => (
+               <a class="block" href={service.slug}>
+                  {service.data.title}
+               </a>
+            ))
+         }
+      </div>
+      <div class="w-1/4 space-y-4">
+         <h3 class="font-heading font-bold text-lg">Contact us</h3>
+         <a
+            class="flex gap-2 items-center"
+            href="https://www.google.com/maps/dir//6860+SW+136th+St,+Miami,+FL+33156/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x88d9c66976f80285:0x6f241242c6ff111f?sa=X&ved=2ahUKEwi6-_e-94f_AhWiRzABHWWlAYIQwwV6BAgMEAQ"
+            target="_blank"
+         >
+            <i icon-name="map-pin" class="text-sm w-5 text-secondary mr-2"></i>
+            6860 SW 136 ST Miami, FL 33156</a
+         >
+         <a class="block" href="tel:7867123715">
+            <i
+               icon-name="phone"
+               class="text-secondary w-5 inline-block items-center mr-2"></i>
+            (786) 712-3715</a
+         >
+         <a class="block" href="mailto:roofing@jopros.com">
+            <i
+               icon-name="mail"
+               class="text-secondary w-5 inline-block items-center mr-2"></i>
+            roofing@jopros.com</a
+         >
+         <a class="block" href="mailto:t_quesada@jopros.com">
+            <i
+               icon-name="mail"
+               class="text-secondary w-5 object-contain inline-block items-center mr-2"
+            ></i>
+            t_quesada@jopros.com</a
+         >
+      </div>
+   </div>
+   <div
+      class="container mt-20 border-t border-white/10 py-6 flex items-center justify-between"
+   >
+      <p>&copy; {new Date().getFullYear()} JoPros All Rights Reserved.</p>
+      <div>
+         <a href="/privacy-policy">Privacy Policy</a>
+      </div>
+   </div>
+</footer>
+
+<script>
+   import { createIcons, MapPin, Phone, Mail } from "lucide";
+   createIcons({
+      icons: {
+         MapPin,
+         Phone,
+         Mail,
+      },
+   });
+</script>

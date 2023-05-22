@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+   service: CollectionEntry<"services">;
+}
+
+const { service } = Astro.props;
+---
+
+<a
+   href={service.slug}
+   class="border p-6 text-left space-y-4 hover:border-primary"
+>
+   <img
+      class="w-20 h-20 object-contain"
+      src={`/images/${service.data.image.url}`}
+      alt={service.data.image.alt}
+   />
+   <h3 class="font-bold text-xl font-heading">{service.data.title}</h3>
+   <p class="line-clamp-3 text-gray-600">{service.data.exerpt}</p>
+   <div class="border-t pt-4 font-semibold">Read More</div>
+</a>

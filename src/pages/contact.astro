@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import ContactForm from "@/components/contact-form";
+
+const allServices = await getCollection("services");
+
+if (Astro.request.method === "POST") {
+   console.log("POST FROM ASt");
+}
+---
+
+<Layout title="Projects">
+   <div class="container section pt-36">
+      <h1 class="text-6xl font-bold font-heading mb-12 text-center">
+         Contact Us
+      </h1>
+      <div class="max-w-xl mx-auto">
+         <ContactForm services={allServices} client:idle />
+      </div>
+   </div>
+</Layout>w

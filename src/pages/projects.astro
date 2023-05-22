@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ProjectList from "@/components/project-list";
+---
+
+<Layout title="Projects">
+   <div class="container section pt-36">
+      <h1 class="text-6xl font-bold font-heading mb-12 text-center">
+         All Projects
+      </h1>
+      <ProjectList client:load />
+   </div>
+</Layout>w

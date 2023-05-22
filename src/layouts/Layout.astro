@@ -1,0 +1,73 @@
+---
+import "@fontsource/ubuntu";
+import Header from "@/components/header.astro";
+import Head from "@/components/head.astro";
+import Footer from "@/components/footer.astro";
+
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <Head title={title} description={description} />
+   </head>
+   <body>
+      <Header />
+      <slot />
+      <Footer />
+      <style is:global>
+         @tailwind base;
+         @tailwind components;
+         @tailwind utilities;
+
+         @layer base {
+            body {
+               @apply antialiased leading-relaxed;
+            }
+
+            input,
+            select {
+               @apply py-3 border w-full block px-3 outline-none focus:ring-1 placeholder:text-gray-600;
+            }
+         }
+
+         @layer components {
+            .container {
+               @apply w-full max-w-screen-xl px-4 mx-auto;
+            }
+
+            .section {
+               @apply py-20;
+            }
+
+            .button {
+               @apply inline-flex justify-center h-14 items-center px-8 bg-primary text-white font-semibold cursor-pointer;
+            }
+
+            .content p {
+               @apply mb-4 text-gray-700;
+            }
+            .content li {
+               @apply list-disc ml-4 text-gray-600;
+            }
+
+            .content h3 {
+               @apply mt-6 font-semibold text-xl mb-2;
+            }
+         }
+
+         .swiper-pagination.swiper-pagination-bullets {
+            @apply relative  mt-6 text-center;
+         }
+
+         .swiper-pagination-bullet {
+            @apply !rounded-none !w-12 mx-1 !h-1 inline-block bg-gray-300 cursor-pointer;
+         }
+
+         .swiper-pagination-bullet.swiper-pagination-bullet-active {
+            @apply bg-primary;
+         }
+      </style>
+   </body>
+</html>

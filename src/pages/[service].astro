@@ -1,0 +1,30 @@
+---
+// export const prerender = true;
+
+import { CollectionEntry, getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import IntroHero from "../components/intro-hero.astro";
+
+export async function getStaticPaths() {
+   const allServices = await getCollection("services");
+
+   return allServices.map((service: any) => ({
+      params: { service: service.slug },
+      props: service,
+   }));
+}
+
+type Props = CollectionEntry<"services">;
+
+const service = Astro.props;
+const { Content } = await service.render();
+---
+
+<Layout title={service.data.title}>
+   <IntroHero title={service.data.title} />
+   <div class="container section">
+      <div class="content">
+         <Content />
+      </div>
+   </div>
+</Layout>

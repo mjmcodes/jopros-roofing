@@ -1,0 +1,41 @@
+<div class="swiper mt-20 overflow-visible">
+   <div class="swiper-wrapper">
+      {
+         Array.from({ length: 6 }).map((_, index) => (
+            <div
+               class={`swiper-slide border p-6 text-left space-y-4 w-[400px] ${
+                  index === 0 && "ml-[calc((100%-1280px+20px)/2)]"
+               }`}
+            >
+               <div class="h-16 w-16 absolute -top-8 rounded-full bg-gray-300" />
+               <p class="line-clamp-3 text-gray-600 pt-4">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Expedita vero eligendi voluptatum magnam accusantium soluta
+                  qui quibusdam labore aliquam nemo, inventore maiores aliquid
+                  eos quaerat omnis in ipsa! At, minus.
+               </p>
+
+               <h3 class="font-bold border-t pt-4">Marlon martinez</h3>
+            </div>
+         ))
+      }
+   </div>
+   <div class="swiper-pagination"></div>
+</div>
+
+<script>
+   import "swiper/css";
+   import "swiper/css/navigation";
+   import Swiper, { Pagination } from "swiper";
+
+   new Swiper(".swiper", {
+      slidesPerView: "auto",
+      spaceBetween: 30,
+      modules: [Pagination],
+      pagination: {
+         el: ".swiper-pagination",
+         enabled: true,
+         clickable: true,
+      },
+   });
+</script>

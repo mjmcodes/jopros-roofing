@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+
+const allServices: any[] = await getCollection("services");
+
+const navLinks = [
+   { name: "home", path: "/" },
+   { name: "about", path: "/about" },
+   { name: "services" },
+   { name: "projects", path: "/projects" },
+   { name: "contact", path: "/contact" },
+];
+
+const { pathname } = Astro.url;
+---
+
+<header class="h-20 fixed z-20 top-0 left-0 w-full border-b bg-white">
+   <div class="container h-full flex items-center justify-between">
+      <div class="flex items-center space-x-20 h-full">
+         <a href="/">
+            <img class="h-16 object-contain" src="/images/logo.svg" alt="" />
+         </a>
+         <ul class="flex items-center space-x-12 text-lg capitalize h-full">
+            {
+               navLinks.map((link) => {
+                  if (link.path) {
+                     return (
+                        <li
+                           class={`h-full items-center flex ${
+                              link.path == pathname &&
+                              "text-primary font-semibold"
+                           }`}
+                        >
+                           <a href={link.path}>{link.name}</a>
+                        </li>
+                     );
+                  }
+                  return (
+                     <li class="relative group cursor-pointer h-full items-center flex">
+                        <span
+                           class={`${
+                              allServices.some((item) =>
+                                 item.slug.includes(pathname)
+                              ) && "text-primary"
+                           }`}
+                        >
+                           {link.name}
+                        </span>
+                        <i icon-name="volume-2" />
+                        <ul class="absolute bg-primary -left-4 bottom-0 translate-y-full transition-all opacity-0 pointer-events-none scale-95 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:scale-100 shadow">
+                           {allServices.map((service: any) => (
+                              <li class="py-2 text-white px-4 whitespace-nowrap hover:underline hover:underline-offset-4">
+                                 <a href={service.slug}>{service.data.title}</a>
+                              </li>
+                           ))}
+                        </ul>
+                     </li>
+                  );
+               })
+            }
+         </ul>
+      </div>
+      <div class="space-x-12">
+         <a href="tel:12">
+            <i
+               icon-name="phone"
+               class="text-primary w-5 object-contain inline-block items-center mr-2"
+            ></i>(786) 235 3550</a
+         >
+         <a class="button" href="#">Request a Quote</a>
+      </div>
+   </div>
+</header>

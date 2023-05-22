@@ -1,0 +1,33 @@
+---
+const { title, description, image } = Astro.props;
+
+const DEFAULT_TITLE = `Jopross Roofing | Miami's best roofing company`;
+const DEFAULT_DESCRIPTION =
+   description ||
+   "Your Trusted Miami Roofing Experts. Jopros has years of experience and a steadfast commitment to quality. Our comprehensive range of services includes maintenance, inspection, repair, replacement, and even new construction. We guarantee top-tier workmanship and use only the highest-quality materials for long-lasting results. Whether you require emergency repairs or a complete roof installation, our skilled professionals will get the job done. Rely on Jopros for efficient, affordable, and dependable roofing solutions in Miami.";
+
+const pageTitle = title ? title + " | Jopross Roofing" : DEFAULT_TITLE;
+const pageDescription = description || DEFAULT_DESCRIPTION;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{pageTitle}</title>
+<meta name="description" content={pageDescription} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={pageDescription} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={pageTitle} />
+<meta property="twitter:description" content={pageDescription} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
